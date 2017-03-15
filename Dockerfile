@@ -45,14 +45,14 @@ RUN sed -i -e 's/dl-cdn/dl-4/' /etc/apk/repositories && \
 
 RUN	 git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	 cd /src/open-zwave && \
-	 make -jN && \
+	 make -j6 && \
 	 ln -s /src/open-zwave /src/open-zwave-read-only
 
 RUN	 git clone --depth 2 https://github.com/domoticz/domoticz.git /src/domoticz && \
 	 cd /src/domoticz && \
 	 git fetch --unshallow && \
 	 cmake -DCMAKE_BUILD_TYPE=Release . && \
-	 make -jN
+	 make -j6
 
 RUN	 rm -rf /src/domoticz/.git && \
 	 rm -rf /src/open-zwave/.git && \
