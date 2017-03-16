@@ -43,15 +43,17 @@ RUN sed -i -e 's/dl-cdn/dl-4/' /etc/apk/repositories && \
 	 udev eudev-dev \
 	 linux-headers
 
-RUN	 git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
-	 cd /src/open-zwave && \
+RUN	 git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave
+
+RUN	 cd /src/open-zwave && \
 	 make -j6 && \
 	 ln -s /src/open-zwave /src/open-zwave-read-only
 
-RUN	 git clone --depth 2 https://github.com/domoticz/domoticz.git /src/domoticz && \
-	 cd /src/domoticz && \
+RUN	 git clone --depth 2 https://github.com/domoticz/domoticz.git /src/domoticz
+	
+RUN	 cd /src/domoticz && \
 	 git fetch --unshallow && \
-	 cmake -DCMAKE_BUILD_TYPE=Release . && \
+	 cmake -DCMAKE_BUILD_TYPE=Release .  && \
 	 make -j6
 
 RUN	 rm -rf /src/domoticz/.git && \
@@ -60,7 +62,9 @@ RUN	 rm -rf /src/domoticz/.git && \
 
 VOLUME /config
 
-ADD ThinkTheme src/domoticz/www/styles/
+RUN	mkdir /src/domoticz/www/styles/ThinkTheme
+
+COPY ThinkTheme/ /src/domoticz/www/styles/ThinkTheme/
 
 EXPOSE 8080
 
