@@ -8,7 +8,7 @@ MAINTAINER Sylvain Desbureaux <sylvain@desbureaux.fr>
 # compile &
 # "install" in order to be found by domoticz &
 ## Domoticz installation &
-# clone git source in src &
+# clone git source in src 
 # Domoticz needs the full history to be able to calculate the version string &
 # prepare makefile &
 # compile &
@@ -27,6 +27,8 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
 
 RUN apk add --no-cache git \
 	git \
+	bash \
+	vim \
 	tzdata \
 	libssl1.0 openssl-dev \
 	build-base cmake \
@@ -56,6 +58,7 @@ RUN apk add --no-cache git \
 VOLUME /config
 
 COPY ThinkTheme/ /src/domoticz/www/styles/ThinkTheme/
+COPY scripts/* /src/domoticz/scripts/
 
 EXPOSE 8080
 
