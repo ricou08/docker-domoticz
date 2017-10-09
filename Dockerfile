@@ -59,6 +59,7 @@ VOLUME /config
 
 COPY ThinkTheme/ /src/domoticz/www/styles/ThinkTheme/
 COPY scripts/* /src/domoticz/scripts/
+COPY plan_domoticz.png /src/domoticz/www/images/floorplans/
 
 EXPOSE 8080
 
