@@ -29,6 +29,7 @@ RUN apk add --no-cache git \
 	git \
 	bash \
 	vim \
+	openssh \
 	tzdata \
 	libssl1.0 openssl-dev \
 	build-base cmake \
@@ -49,7 +50,7 @@ RUN apk add --no-cache git \
 	cd /src/domoticz && \
 	git fetch --unshallow && \
 	cmake -DCMAKE_BUILD_TYPE=Release .  && \
-	make -j6 && \
+	make -j7 && \
 	apk del git tzdata cmake linux-headers libusb-dev zlib-dev openssl-dev boost-dev sqlite-dev build-base eudev-dev coreutils curl-dev python3-dev && \
 	rm -rf /src/domoticz/.git && \
 	mkdir /src/domoticz/www/styles/ThinkTheme
